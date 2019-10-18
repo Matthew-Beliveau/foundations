@@ -6,6 +6,7 @@
 #include <math.h>
 
 #define TEMPLATE template <class FChar>
+using namespace std;
 
 template <typename character>
 class FCharacter
@@ -15,7 +16,7 @@ public:
   FCharacter () {}
   FCharacter (character cz) { c = cz; }
 
-  friend std::ostream &operator<<(std::ostream &output, const FCharacter<character> &right)
+  friend ostream &operator<<(ostream &output, const FCharacter<character> &right)
     {
       output << right.c;
       return output;
@@ -31,10 +32,10 @@ TEMPLATE
 class Alphabet
 {
 public:
-  std::vector<FChar> set;
-  Alphabet<FChar> (std::vector<FChar> l) { set = l; } 
+  vector<FChar> set;
+  Alphabet<FChar> (vector<FChar> l) { set = l; } 
 
-  friend std::ostream &operator<<(std::ostream &output, const Alphabet<FChar> &right)
+  friend ostream &operator<<(ostream &output, const Alphabet<FChar> &right)
     {
       for (auto v : right.set)
 	output << v;
@@ -55,7 +56,7 @@ TEMPLATE
 class RString
 {
 public:
-  std::vector<FChar> string;
+  vector<FChar> string;
   RString () {} 
   // Variadic constructor so I don't have to bother with an add function
   RString (int count, ...)
@@ -72,7 +73,7 @@ public:
 
   FChar& operator[] (int index) { return string[index]; }
 
-  friend std::ostream &operator<<(std::ostream &output, const RString<FChar> &right)
+  friend ostream &operator<<(ostream &output, const RString<FChar> &right)
     {
       for (auto v : right.string)
 	output << v;
@@ -146,4 +147,3 @@ RString<FChar> lexi(Alphabet<FChar> a, int n)
 
   return result;
 }
-
