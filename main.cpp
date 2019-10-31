@@ -1,4 +1,4 @@
-#include "alphabet.hpp"
+#include "DFA.hpp"
 #include <vector>
 #include <iostream>
 #include <algorithm>
@@ -6,13 +6,14 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
-  if (argc != 2)
-    {
-      cout << "Insufficient amount of arguments" << endl;
-      exit(1);
-    }
+  // if (argc != 2)
+  //   {
+  //     cout << "Insufficient amount of arguments" << endl;
+  //     exit(1);
+  //   }
+  
   FCharacter<char> Zero ('0');
   FCharacter<char> One ('1');
   FCharacter<char> Two ('2');
@@ -20,14 +21,16 @@ int main(int argc, char *argv[])
 
   Alphabet<FCharacter<char>> my_alphabet (my_vector);
 
-  RString<FCharacter<char>> str1(4, Zero, One, Two);
-  cout << str1 << endl;
-
-  cout << "Alphabet: " << my_alphabet << endl;
- 
-  RString<FCharacter<char>> str2 = lexi (my_alphabet, atoi(argv[1]));
+  RString<FCharacter<char>> str1(3, Zero, One, Two);
   
-  cout << str2 << endl;
+  //Task 5: DFA that accepts no string; very confused on how to get this to
+  //work
+  
+  auto noStrings = new DFA<int>
+    ([](int qi) { return qi == 0; },
+     0,
+     [](int qi) { return qi == -1; },
+     [](int qi, char c) { return 0; });
 
   return 0;
 }
