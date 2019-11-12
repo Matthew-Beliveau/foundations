@@ -71,10 +71,18 @@ public:
     va_end(ap);
    }
 
+  bool empty()
+    {
+      return string.empty();
+    }
+
   FChar& operator[] (int index) { return string[index]; }
+
 
   friend ostream &operator<<(ostream &output, const RString<FChar> &right)
     {
+      if (right.string.empty())
+	output << "ε";
       for (auto v : right.string)
 	output << v;
       return output;

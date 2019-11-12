@@ -15,7 +15,11 @@ public:
   bool (*acceptingState)(state);
   state (*transition)(state, FChar);
 
-  DFA(bool (Q)(state), state q0, bool (*F)(state), state (Delta)(state, FChar)) : Qstates(Q), qStart(q0), acceptingState(F), transition(Delta) {};
+  DFA(bool (Q)(state),
+      state q0,
+      bool (*F)(state),
+      state (Delta)(state, FChar))
+    : Qstates(Q), qStart(q0), acceptingState(F), transition(Delta) {};
 
   bool accepts(RString<state> str)
     {
