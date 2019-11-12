@@ -16,10 +16,23 @@ public:
   FCharacter () {}
   FCharacter (character cz) { c = cz; }
 
-  friend ostream &operator<<(ostream &output, const FCharacter<character> &right)
+  friend ostream &operator<<(ostream &output,
+			     const FCharacter<character> &right)
     {
       output << right.c;
       return output;
+    }
+
+  friend bool operator==(const FCharacter<character>& lv,
+			 const FCharacter<character>& rv)
+    {
+      return lv.c == rv.c;
+    }
+
+  friend bool operator!=(const FCharacter<character>& lv,
+			 const FCharacter<character>& rv)
+    {
+      return lv.c != rv.c;
     }
 };
 
@@ -62,7 +75,6 @@ public:
   RString (int count, ...)
   {
     va_list ap;  
-    //string.push_back (new Empty_FString<FChar> ());
     va_start(ap, count);
     for (int i = 0; i < count; i++)
     {

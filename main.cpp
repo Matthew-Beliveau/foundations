@@ -8,12 +8,6 @@ using namespace std;
 
 int main()
 {
-  // if (argc != 2)
-  //   {
-  //     cout << "Insufficient amount of arguments" << endl;
-  //     exit(1);
-  //   }
-  
   FCharacter<char> Zero ('0');
   FCharacter<char> One ('1');
   FCharacter<char> Two ('2');
@@ -32,6 +26,7 @@ int main()
   RString<int> test2 (3, intZero, intZero, intOne);
   RString<int> test3 (3, intOne, intZero, intOne);
   RString<int> test4 (0); //empty string
+  RString<int> test5 (1, intOne);
 
   auto noStrings = new DFA<int, FCharacter<int>>
     ([](int qi) { return qi == 0; },
@@ -61,10 +56,27 @@ int main()
   cout << test4 << ": " << onlyEmpty->accepts (test4) << " should be "
     << true << endl;
   cout << test1 << ": " << onlyEmpty->accepts (test1) << " should be "
-    << false << endl << endl;
+    << false << endl;
+
+  cout << endl;
 
   //Task 7: Function that generates a DFA that accepts only given character N
-  character_DFA(0, 1, 2, 1);
+  DFA<int, FCharacter<int>> givenChar(intOne);
+
+  cout << "Task 7: Function that generates a DFA that accepts only"
+    " given character N" << endl;
+  cout << test1 << ": " << givenChar.accepts (test1) << " should be "
+    << false << endl;
+  cout << test2 << ": " << givenChar.accepts (test2) << " should be "
+    << false << endl;
+  cout << test3 << ": " << givenChar.accepts (test3) << " should be "
+    << false << endl;
+  cout << test4 << ": " << givenChar.accepts (test4) << " should be "
+    << false << endl;
+  cout << test5 << ": " << givenChar.accepts (test5) << " should be "
+    << true << endl;
+
+  cout << endl;
 
   // DFA test that only accepts empty string and even length strings
   auto ex = new DFA<int, FCharacter<int>>
