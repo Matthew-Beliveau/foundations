@@ -63,6 +63,9 @@ int main()
   cout << test1 << ": " << onlyEmpty->accepts (test1) << " should be "
     << false << endl << endl;
 
+  //Task 7: Function that generates a DFA that accepts only given character N
+  character_DFA(0, 1, 2, 1);
+
   // DFA test that only accepts empty string and even length strings
   auto ex = new DFA<int, FCharacter<int>>
     ([](int qi) { return qi == 0 || qi == 1; },
